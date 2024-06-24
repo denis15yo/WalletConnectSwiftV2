@@ -6,6 +6,7 @@ extension Foundation.Bundle {
     /// Returns the resource bundle associated with the current Swift module.
     static var resourceBundle: Bundle = {
         let bundleName = "WalletConnect_WalletConnectRelay"
+        let nicegramBundleName = "WalletConnectRelay_WalletConnectRelay"
 
         let candidates = [
             // Bundle should be present here when the package is linked into an App.
@@ -30,6 +31,11 @@ extension Foundation.Bundle {
         for candidate in candidates {
             let bundlePath = candidate?.appendingPathComponent(bundleName + ".bundle")
             if let bundle = bundlePath.flatMap(Bundle.init(url:)) {
+                return bundle
+            }
+            
+            let nicegramBundlePath = candidate?.appendingPathComponent(nicegramBundleName + ".bundle")
+            if let bundle = nicegramBundlePath.flatMap(Bundle.init(url:)) {
                 return bundle
             }
         }
